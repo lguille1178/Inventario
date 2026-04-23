@@ -49,6 +49,7 @@ use App\Repository\Assets\AssetsActionRepository;
 use App\Repository\Assets\AssetsQueryRepository;
 use App\Repository\BaseRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -88,8 +89,10 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
-    {
-        //
+    public function boot()
+{
+    if (config('app.env') === 'production' || config('app.env') === 'staging') {
+        URL::forceScheme('https');
     }
+}
 }
