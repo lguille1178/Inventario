@@ -16,8 +16,8 @@ return Application::configure(basePath: dirname(__DIR__))
             ->group(base_path('routes/api.php'));
         } 
     )
-    ->withMiddleware(function (Middleware $middleware) {
-        //
+   ->withMiddleware(function (Middleware $middleware) {
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
